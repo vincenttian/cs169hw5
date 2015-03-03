@@ -13,9 +13,20 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def merge
-    puts "got here\n\n\n\n"
-    puts params
-    puts "got here\n\n\n\n"
+    curr_article = Article.find(params[:curr_article].split("/")[-1])
+    to_be_merged_article = Article.find(params[:article_id])
+    if curr_article == to_be_merged_article
+      # raise error of same article
+    end
+    curr_article.body += to_be_merged_article.body
+    # point all comments to new article
+    comments = Comment.where(article_id: to_be_merged_article.id).all
+    comments.each { |c|
+      c.article_id = curr_article.id
+      c.save
+    }
+    to_be_merged_article.destroy
+    return redirect_to index
   end
 
   def index
