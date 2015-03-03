@@ -14,19 +14,29 @@ class ArticlesController < ContentController
 
   def merge
     curr_article = Article.find(params[:curr_article].split("/")[-1])
-    to_be_merged_article = Article.find(params[:article_id])
+    # ensure that to_be_merged_article exists
+    begin
+      to_be_merged_article = Article.find(params[:article_id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = _("Could not find article with that Id") 
+      return redirect_to params[:curr_article]
+    end
     if curr_article == to_be_merged_article
       # raise error of same article
+      flash[:notice] = _("Can't merge article with itself")
+      redirect_to params[:curr_article]
+    else
+      curr_article.body += to_be_merged_article.body
+      # point all comments to new article
+      comments = Comment.where(article_id: to_be_merged_article.id).all
+      comments.each { |c|
+        c.article_id = curr_article.id
+        c.save
+      }
+      to_be_merged_article.destroy
+      redirect_to '/admin/content'
+      flash[:notice] = _('Article was successfully merged')
     end
-    curr_article.body += to_be_merged_article.body
-    # point all comments to new article
-    comments = Comment.where(article_id: to_be_merged_article.id).all
-    comments.each { |c|
-      c.article_id = curr_article.id
-      c.save
-    }
-    to_be_merged_article.destroy
-    return redirect_to index
   end
 
   def index
