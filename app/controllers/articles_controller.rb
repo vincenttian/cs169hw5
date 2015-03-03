@@ -12,6 +12,12 @@ class ArticlesController < ContentController
 
   helper :'admin/base'
 
+  def merge
+    puts "got here\n\n\n\n"
+    puts params
+    puts "got here\n\n\n\n"
+  end
+
   def index
     respond_to do |format|
       format.html { @limit = this_blog.limit_article_display }
