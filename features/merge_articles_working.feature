@@ -12,19 +12,19 @@ Feature: Merge Articles
     | b                   | b_author | b_hi | 1       | 2  |
     And the following comments exist:
     | title               | author   | body | user_id | article_id | 
-    | a                   | a_author | a_hi | 1       | 1          |
-    | b                   | b_author | b_hi | 1       | 2          |
+    | a                   | a_author | a_hi | 1       | 3          |
+    | b                   | b_author | b_hi | 1       | 4          |
     And I am on the edit article page
 
   Scenario: Merged Article Should Contain Text Of Both Previous Articles
-    When I fill in "article_id" with "3"
+    When I fill in "article_id" with "4"
     And I press "Merge"
-    Then article 1 should have text of both articles
+    Then article 3 should have text of both articles
 
   Scenario: Merged Article Should Have One Author
-    When I fill in "article_id" with "3"
+    When I fill in "article_id" with "4"
     And I press "Merge"
-    Then article 1 should have one author
+    Then article 3 should have one author
 
   Scenario: Merged Article Should Have Both Articles Comments
     When I fill in "article_id" with "3"

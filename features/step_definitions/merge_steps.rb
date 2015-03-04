@@ -14,6 +14,16 @@ And /^I am not logged into the admin panel$/ do
   visit '/admin/content'
 end
 
+Then /^article 3 should have text of both articles$/ do
+  a = Article.find_by_id(3)
+  a.body.should have_content("b_hi")
+end
+
+Then /^article 3 should have one author$/ do
+  a = Article.find_by_id(3)
+  a.author.should have_content("a_author") or a.author.should have_content("b_author")
+end
+
 # Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
 #   page.body.index(e1).should < page.body.index(e2)
 # end
