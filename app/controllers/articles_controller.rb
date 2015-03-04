@@ -27,6 +27,7 @@ class ArticlesController < ContentController
       redirect_to params[:curr_article]
     else
       curr_article.body += to_be_merged_article.body
+      curr_article.save
       # point all comments to new article
       comments = Comment.where(article_id: to_be_merged_article.id).all
       comments.each { |c|

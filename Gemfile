@@ -25,7 +25,7 @@ end
 
 source 'https://rubygems.org'
 ruby "1.9.3"
-
+# ruby "2.1.1"
 gem 'thin'
 gem 'rails', '~> 3.0.10'
 gem 'require_relative'
@@ -57,4 +57,8 @@ group :development, :test do
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
+
+  gem "better_errors"
+  gem "binding_of_caller"
+
 end
