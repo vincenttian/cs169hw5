@@ -1,6 +1,6 @@
 Given /the following articles exist/ do |article_table|
   article_table.hashes.each do |article|
-    Article.create(id: article['id'], title: article['title'], author: article['author'], body: article['body'], user_id: article['user_id'])
+    Article.create!(id: article['id'], title: article['title'], author: article['author'], body: article['body'], user_id: article['user_id'])
   end
 end
 
@@ -14,13 +14,13 @@ And /^I am not logged into the admin panel$/ do
   visit '/admin/content'
 end
 
-Then /^article 3 should have text of both articles$/ do
-  a = Article.find_by_id(3)
+Then /^article (\d+) should have text of both articles$/ do |arg1|
+  a = Article.find_by_id(arg1)
   a.body.should have_content("b_hi")
 end
 
-Then /^article 3 should have one author$/ do
-  a = Article.find_by_id(3)
+Then /^article (\d+) should have one author$/ do |arg1|
+  a = Article.find_by_id(arg1)
   a.author.should have_content("a_author") or a.author.should have_content("b_author")
 end
 
@@ -59,7 +59,13 @@ end
 #     page.body.index(m.title).should > 0
 #   }
 # end
+Then /^article (\d+) should have both comments$/ do |arg1|
+  article = Article.find(arg1)
+  comments = Comment.where(article_id: article.id).all
+  comments.length.should == 2
+end
 
-# Then(/^the director of "(.*?)" should be "(.*?)"$/) do |arg1, arg2|
-#   page.body.index(arg2).should > 0 
-# end
+Then /^article (\d+) should have one title$/ do |arg1|
+  article = Article.find(arg1)
+  article.title.should == "a"
+end
