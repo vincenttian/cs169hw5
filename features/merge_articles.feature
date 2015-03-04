@@ -5,7 +5,12 @@ Feature: Merge Articles
 
   Background:
     Given the blog is set up
-    And I am not logged into the admin panel
+    And I am logged into the admin panel
+    And the following articles exist:
+    | title               | author   | body | user_id |
+    | a                   | a_author | a_hi | 1       |
+    | b                   | b_author | b_hi | 1       |
+    And I am on the edit article page
 
   Scenario: Non-Admin Cannot Merge Articles
     # Given I am on the new article page

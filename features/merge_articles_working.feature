@@ -6,6 +6,11 @@ Feature: Merge Articles
   Background:
     Given the blog is set up
     And I am logged into the admin panel
+    And the following articles exist:
+    | title               | author   | body | user_id |
+    | a                   | a_author | a_hi | 1       |
+    | b                   | b_author | b_hi | 1       |
+    And I am on the edit article page
 
   Scenario: Merged Article Should Contain Text Of Both Previous Articles
     # Given I am on the new article page
