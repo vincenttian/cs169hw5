@@ -14,6 +14,19 @@ class ArticlesController < ContentController
 
   def merge
     curr_article = Article.find(params[:curr_article].split("/")[-1])
+    
+    # merge = curr_article.merge_with(params[:article_id])    
+    # if merge == "None"
+    #   flash[:notice] = _("Could not find article with that Id") 
+    #   return redirect_to params[:curr_article]
+    # elsif merge == "Same"
+    #   flash[:notice] = _("Can't merge article with itself")
+    #   redirect_to params[:curr_article]
+    # else
+    #   flash[:notice] = _('Article was successfully merged')
+    #   redirect_to '/admin/content'
+    # end
+
     # ensure that to_be_merged_article exists
     begin
       to_be_merged_article = Article.find(params[:article_id])
@@ -38,6 +51,7 @@ class ArticlesController < ContentController
       redirect_to '/admin/content'
       flash[:notice] = _('Article was successfully merged')
     end
+
   end
 
   def index

@@ -71,9 +71,31 @@ class Article < Content
     end
   end
 
-  def merge_with(other_article_id)
-    
-  end
+  # def merge_with(other_article_id)
+  #   begin
+  #     to_be_merged_article = Article.find(other_article_id)
+  #   rescue ActiveRecord::RecordNotFound
+  #     return "None"
+  #   end
+
+  #   puts self.id
+  #   return
+
+  #   if self.id == other_article_id
+  #     return "Same"
+  #   else
+  #     self.body += to_be_merged_article.body
+  #     self.save
+  #     # point all comments to new article
+  #     comments = Comment.where(article_id: to_be_merged_article.id).all
+  #     comments.each { |c|
+  #       c.article_id = self.id
+  #       c.save
+  #     }
+  #     to_be_merged_article.destroy
+  #     return "Sucess"
+  #   end
+  # end
 
   def set_permalink
     return if self.state == 'draft'
