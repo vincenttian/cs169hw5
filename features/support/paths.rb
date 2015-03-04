@@ -18,7 +18,7 @@ module NavigationHelpers
     when /^the new article page$/
       '/admin/content/new'
     when /^the edit article page$/
-      '/admin/content/edit/1'
+      '/admin/content/edit/3'
     when /^the article list view page$/
       '/admin/content'
     # Add more mappings here.
