@@ -1,3 +1,6 @@
+h2. Pivotal Tracker
+https://www.pivotaltracker.com/n/projects/1291968
+
 h1. About Typo
 
 Typo has been around since March of 2005 making it one of the oldest blogging platforms in Rails.
