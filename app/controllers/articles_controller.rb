@@ -29,7 +29,7 @@ class ArticlesController < ContentController
 
     # ensure that to_be_merged_article exists
     begin
-      to_be_merged_article = Article.find(params[:article_id])
+      to_be_merged_article = Article.find(params[:merge_with])
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = _("Could not find article with that Id") 
       return redirect_to params[:curr_article]
