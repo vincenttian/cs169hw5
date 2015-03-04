@@ -7,9 +7,9 @@ Feature: Merge Articles
     Given the blog is set up
     And I am logged into the admin panel
     And the following articles exist:
-    | title               | author   | body | user_id |
-    | a                   | a_author | a_hi | 1       |
-    | b                   | b_author | b_hi | 1       |
+    | title               | author   | body | user_id | id |
+    | a                   | a_author | a_hi | 1       | 1  |
+    | b                   | b_author | b_hi | 1       | 2  |
     And I am on the edit article page
 
   Scenario: Merged Article Should Contain Text Of Both Previous Articles
