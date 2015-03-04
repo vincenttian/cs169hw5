@@ -10,32 +10,28 @@ Feature: Merge Articles
     | title               | author   | body | user_id | id |
     | a                   | a_author | a_hi | 1       | 1  |
     | b                   | b_author | b_hi | 1       | 2  |
+    And the following comments exist:
+    | title               | author   | body | user_id | article_id | 
+    | a                   | a_author | a_hi | 1       | 1          |
+    | b                   | b_author | b_hi | 1       | 2          |
     And I am on the edit article page
 
   Scenario: Merged Article Should Contain Text Of Both Previous Articles
-    # Given I am on the new article page
-    # When I fill in "article_title" with "Foobar"
-    # And I fill in "article__body_and_extended_editor" with "Lorem Ipsum"
-    # And I press "Publish"
-    # Then I should be on the admin content page
+    When I fill in "article_id" with "3"
+    And I press "Merge"
+    Then article 1 should have text of both articles
 
   Scenario: Merged Article Should Have One Author
-    # Given I am on the new article page
-    # When I fill in "article_title" with "Foobar"
-    # And I fill in "article__body_and_extended_editor" with "Lorem Ipsum"
-    # And I press "Publish"
-    # Then I should be on the admin content page
+    When I fill in "article_id" with "3"
+    And I press "Merge"
+    Then article 1 should have one author
 
   Scenario: Merged Article Should Have Both Articles Comments
-    # Given I am on the new article page
-    # When I fill in "article_title" with "Foobar"
-    # And I fill in "article__body_and_extended_editor" with "Lorem Ipsum"
-    # And I press "Publish"
-    # Then I should be on the admin content page
+    When I fill in "article_id" with "3"
+    And I press "Merge"
+    Then article 1 should have both comments
 
   Scenario: Merged Article Should Have Title Of One Of Old Articles
-    # Given I am on the new article page
-    # When I fill in "article_title" with "Foobar"
-    # And I fill in "article__body_and_extended_editor" with "Lorem Ipsum"
-    # And I press "Publish"
-    # Then I should be on the admin content page
+    When I fill in "article_id" with "3"
+    And I press "Merge"
+    Then article 1 should have one title

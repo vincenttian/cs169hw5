@@ -4,6 +4,12 @@ Given /the following articles exist/ do |article_table|
   end
 end
 
+Given /the following comments exist/ do |comment_table|
+  comment_table.hashes.each do |comment|
+    Comment.create(title: comment['title'], author: comment['author'], body: comment['body'], user_id: comment['user_id'], article_id: comment['article_id'])
+  end
+end
+
 And /^I am not logged into the admin panel$/ do
   visit '/admin/content'
 end

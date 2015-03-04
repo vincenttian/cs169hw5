@@ -13,6 +13,6 @@ Feature: Merge Articles
     And I am on the edit article page
 
   Scenario: Non-Admin Cannot Merge Articles
-    When I fill in "article_id" with "2"
+    When I fill in "article_id" with "1"
     And I press "Merge"
     Then I should be on the article list view page
